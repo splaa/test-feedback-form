@@ -17,10 +17,12 @@ class CreateFeedbackTable extends Migration
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
-            $table->string('email', 100);
             $table->text('message');
+            $table->unsignedBigInteger('user_id');
             $table->string('status')->default(Feedback::STATUS_UNSEEN);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

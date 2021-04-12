@@ -26,4 +26,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('feedback', FeedbackController::class);
+    Route::put('feedback/status/{id}', [FeedbackController::class, 'status']);
 });

@@ -19,8 +19,8 @@
     <form method="post" action="{{ route('feedback.store') }}">
         @csrf
         <div class="form-group">
-            <input type="text" class="form-control" name="name" placeholder="Тема сообщения"
-                   required maxlength="100" value="{{ old('name') ?? '' }}">
+            <input type="text" class="form-control" name="title" placeholder="Тема сообщения"
+                   required maxlength="100" value="{{ old('title') ?? '' }}">
         </div>
         <div class="form-group">
         <textarea class="form-control" name="message" placeholder="Ваше сообщение"

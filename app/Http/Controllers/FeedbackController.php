@@ -58,12 +58,12 @@ class FeedbackController extends Controller
         ]);
         $feedback = Feedback::create([
             'title' => $request['title'],
-            'email' => auth()->user()->email,
+            'user_id' => auth()->user()->id,
             'message' => $request['message'],
         ]);
 
         return redirect()->route('feedback.index')
-            ->whith('success', 'Ваше сообщение успешно принято к обработке');
+            ->with('success', 'Ваше сообщение успешно принято к обработке');
     }
 
     /**
@@ -105,6 +105,20 @@ class FeedbackController extends Controller
 
         return redirect()->route('feedback.index')
             ->with('success', 'Feedback updated successfully');
+    }
+
+    public function status(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'string|min:5|max:6',
+        ]);
+        $feedback = Feedback::query()->find($id)->first();
+        $feedback->update([
+            'status' => $request['status']
+        ]);
+        return \response()->json([
+            'status' => $feedback->status,
+        ])->setStatusCode(200, 'Status ' . $feedback->status );
     }
 
     /**

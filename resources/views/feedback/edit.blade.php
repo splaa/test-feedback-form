@@ -16,12 +16,25 @@
             </ul>
         </div>
     @endif
-    <form method="post" action="{{ route('feedback.send') }}">
+    <form method="post" action="{{ route('feedback.update') }}">
         @csrf
         <div class="form-group">
-            <input type="text" class="form-control" name="name" placeholder="Тема сообщения"
-                   required maxlength="100" value="{{ old('name') ?? '' }}">
+            <input class="status-checkbox form-control" type="checkbox" value="" id="checkboxStatusFeedback"
+                   @if($feedback->status === \App\Models\Feedback::STATUS_VIEWED)
+                   checked @endif>
+            <label class="form-check-label" for="flexCheckChecked">
+                @if($feedback->status === \App\Models\Feedback::STATUS_VIEWED)
+                    Просмотрено
+                @else
+                    Не просмотрено
+                @endif
+            </label>
         </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="title" placeholder="Тема сообщения"
+                   required maxlength="100" value="{{ old('title') ?? '' }}">
+        </div>
+
         <div class="form-group">
         <textarea class="form-control" name="message" placeholder="Ваше сообщение"
                   required maxlength="500" rows="3">{{ old('message') ?? '' }}</textarea>

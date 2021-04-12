@@ -16,7 +16,7 @@
             </ul>
         </div>
     @endif
-    <form method="post" action="{{ route('feedback.send') }}">
+    <form method="post" action="{{ route('feedback.store') }}">
         @csrf
         <div class="form-group">
             <input type="text" class="form-control" name="name" placeholder="Тема сообщения"
