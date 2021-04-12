@@ -12,6 +12,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
+    public const ROLE_MANAGER = 'manager';
+    public const ROLE_CLIENT = 'client';
+
     /**
      * The attributes that are mass assignable.
      *
