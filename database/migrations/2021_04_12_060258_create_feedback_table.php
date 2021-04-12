@@ -18,6 +18,7 @@ class CreateFeedbackTable extends Migration
             $table->id();
             $table->string('title', 100);
             $table->text('message');
+            $table->string('file')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->string('status')->default(Feedback::STATUS_UNSEEN);
             $table->timestamps();

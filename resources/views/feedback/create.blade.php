@@ -27,6 +27,11 @@
                   required maxlength="500" rows="3">{{ old('message') ?? '' }}</textarea>
         </div>
         <div class="form-group">
+            <label for="inputFile">Выберите файл</label>
+            <input type="file" class="form-control-file" id="inputFile">
+        </div>
+
+        <div class="form-group">
             <button type="submit" class="btn btn-primary">Отправить</button>
         </div>
     </form>
