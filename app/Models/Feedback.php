@@ -21,4 +21,10 @@ class Feedback extends Model
     'title', 'user_id', 'message', 'status'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }
