@@ -12,5 +12,13 @@ class Feedback extends Model
     public const STATUS_VIEWED = 'viewed';
     public const STATUS_UNSEEN = 'unseen';
 
+    /**
+     * Атрибуты, которые можно назначать массово.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    'title', 'email', 'message', 'status'
+    ];
 
 }
