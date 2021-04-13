@@ -7,7 +7,7 @@
             <div class="pull-left">
                 <h2>Список заявок</h2>
             </div>
-            <div class="pull-right">
+            <div class="pull-right mb-3">
                 @can('feedback-create')
                     <a class="btn btn-success" href="{{ route('feedback.create') }}"> Create New Feedback</a>
                 @endcan

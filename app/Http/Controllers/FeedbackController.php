@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FeedbackMailer;
 use App\Models\Feedback;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -67,8 +69,10 @@ class FeedbackController extends Controller
             'message' => $request['message'],
         ]);
 
+        Mail::to($feedback->user->email)->send(new FeedbackMailer($feedback));
+
         return redirect()->route('feedback.index')
-            ->with('success', 'Ваше сообщение успешно принято к обработке');
+            ->with('success', 'Ваше сообщение успешно отправлено и принято к обработке');
     }
 
     /**

@@ -40,7 +40,10 @@ return [
             'channels' => ['single'],
             'ignore_exceptions' => false,
         ],
-
+        'maillog' => [
+            'driver' => 'single',
+            'path' => storage_path('mails/laravel.log'),
+        ],
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),

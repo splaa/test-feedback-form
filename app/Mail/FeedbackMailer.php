@@ -30,8 +30,12 @@ class FeedbackMailer extends Mailable
      */
     public function build()
     {
+
+        if ($this->feedback->file) {
+            $this->attachFromStorageDisk('local',$this->feedback->file);
+        }
+
         return $this
-            ->from($this->feedback->email)
             ->subject('Форма обратной связи')
             ->view('email.feedback', ['feedback'=>$this->feedback]);
     }
