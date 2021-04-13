@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\QueueSenderEmail;
 use App\Mail\FeedbackMailer;
 use App\Models\Feedback;
 use Exception;
@@ -69,7 +70,11 @@ class FeedbackController extends Controller
             'message' => $request['message'],
         ]);
 
-        Mail::to($feedback->user->email)->send(new FeedbackMailer($feedback));
+        $qs = new QueueSenderEmail($feedback)
+//        ->delay(now()->addMinutes(3))
+        ;
+        $this->dispatch($qs);
+
 
         return redirect()->route('feedback.index')
             ->with('success', 'Ваше сообщение успешно отправлено и принято к обработке');
