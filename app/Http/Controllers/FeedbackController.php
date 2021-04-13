@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 
 class FeedbackController extends Controller
@@ -54,11 +55,15 @@ class FeedbackController extends Controller
     {
         $request->validate([
             'title' => 'required|max:100',
+            'feedbackFile' => 'file|nullable',
             'message' => 'required|max:500',
         ]);
+        $path = Storage::putFile('public/files', $request->file('feedbackFile'));
+
         $feedback = Feedback::create([
             'title' => $request['title'],
             'user_id' => auth()->user()->id,
+            'file' => $path,
             'message' => $request['message'],
         ]);
 

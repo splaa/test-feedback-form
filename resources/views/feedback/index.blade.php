@@ -58,7 +58,7 @@
                         <a href="{{route('feedback.show', ['feedback'=>$feedback])}}">{{ Str::limit($feedback->message, 10) }}</a>
                     </td>
                     <td>{{ $feedback->user->name }}</td>
-                    <td><a href="#">открыть</a></td>
+                    <td><a href="{{Storage::url($feedback->file)}}">открыть</a></td>
                     <td>{{ $feedback->created_at->format('Y-m-d') }}</td>
                     <td>
                         <div class="form-check">

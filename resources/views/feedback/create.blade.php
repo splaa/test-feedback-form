@@ -16,7 +16,7 @@
             </ul>
         </div>
     @endif
-    <form method="post" action="{{ route('feedback.store') }}">
+    <form method="post" action="{{ route('feedback.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <input type="text" class="form-control" name="title" placeholder="Тема сообщения"
@@ -28,7 +28,7 @@
         </div>
         <div class="form-group">
             <label for="inputFile">Выберите файл</label>
-            <input type="file" class="form-control-file" id="inputFile">
+            <input type="file" class="form-control-file" name="feedbackFile" id="inputFile">
         </div>
 
         <div class="form-group">
